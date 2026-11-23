@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="18%" r="55%">
+      <stop offset="0%" stop-color="#e8b562" stop-opacity="0.55"/>
+      <stop offset="45%" stop-color="#a5762e" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#0a0605" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#140d09"/>
+      <stop offset="100%" stop-color="#070403"/>
+    </linearGradient>
+    <linearGradient id="cone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dfa54f" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#dfa54f" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="veil" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#050100" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#050100" stop-opacity="0.9"/>
+    </linearGradient>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+    <filter id="soft2" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="26"/>
+    </filter>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#050100"/>
+  <rect width="1920" height="1080" fill="url(#glow)"/>
+
+  <!-- световые конусы прожекторов -->
+  <polygon points="520,-40 380,760 760,760" fill="url(#cone)" filter="url(#soft)"/>
+  <polygon points="1400,-40 1160,760 1540,760" fill="url(#cone)" filter="url(#soft)"/>
+  <polygon points="960,-80 820,720 1100,720" fill="url(#cone)" opacity="0.7" filter="url(#soft)"/>
+
+  <!-- люстра: кольца света -->
+  <g filter="url(#soft2)">
+    <circle cx="960" cy="150" r="10" fill="#f4cf8a" opacity="0.9"/>
+    <ellipse cx="960" cy="180" rx="150" ry="26" fill="#dfa54f" opacity="0.55"/>
+    <ellipse cx="960" cy="230" rx="220" ry="34" fill="#c08a3e" opacity="0.35"/>
+    <ellipse cx="960" cy="300" rx="300" ry="42" fill="#9a6b2c" opacity="0.2"/>
+  </g>
+
+  <!-- колонны зала -->
+  <g fill="#0d0806">
+    <rect x="60" y="120" width="90" height="720"/>
+    <rect x="1770" y="120" width="90" height="720"/>
+    <rect x="330" y="180" width="60" height="620" opacity="0.8"/>
+    <rect x="1530" y="180" width="60" height="620" opacity="0.8"/>
+  </g>
+  <g fill="#dfa54f" opacity="0.14">
+    <rect x="60" y="120" width="6" height="720"/>
+    <rect x="1854" y="120" width="6" height="720"/>
+  </g>
+
+  <!-- столы с зелёным сукном в глубине -->
+  <g>
+    <ellipse cx="480" cy="760" rx="230" ry="42" fill="#0c1f14"/>
+    <ellipse cx="480" cy="752" rx="230" ry="40" fill="#123021"/>
+    <ellipse cx="480" cy="752" rx="230" ry="40" fill="#1d4a32" opacity="0.35" filter="url(#soft)"/>
+    <ellipse cx="1450" cy="780" rx="260" ry="46" fill="#0c1f14"/>
+    <ellipse cx="1450" cy="772" rx="260" ry="44" fill="#123021"/>
+    <ellipse cx="1450" cy="772" rx="260" ry="44" fill="#1d4a32" opacity="0.35" filter="url(#soft)"/>
+  </g>
+
+  <!-- пол с отражениями -->
+  <rect x="0" y="790" width="1920" height="290" fill="url(#floor)"/>
+  <g opacity="0.16" filter="url(#soft)">
+    <ellipse cx="960" cy="920" rx="330" ry="60" fill="#dfa54f"/>
+    <ellipse cx="480" cy="950" rx="210" ry="34" fill="#1d4a32"/>
+    <ellipse cx="1450" cy="980" rx="240" ry="38" fill="#1d4a32"/>
+  </g>
+
+  <!-- золотая пыль -->
+  <g fill="#e8c07a">
+    <circle cx="420" cy="360" r="2.2" opacity="0.7"/>
+    <circle cx="610" cy="250" r="1.6" opacity="0.5"/>
+    <circle cx="760" cy="470" r="2.6" opacity="0.8"/>
+    <circle cx="900" cy="330" r="1.4" opacity="0.45"/>
+    <circle cx="1050" cy="420" r="2" opacity="0.6"/>
+    <circle cx="1180" cy="270" r="1.7" opacity="0.5"/>
+    <circle cx="1330" cy="500" r="2.4" opacity="0.7"/>
+    <circle cx="1520" cy="350" r="1.5" opacity="0.5"/>
+    <circle cx="540" cy="580" r="1.8" opacity="0.55"/>
+    <circle cx="1250" cy="610" r="2.1" opacity="0.6"/>
+    <circle cx="960" cy="540" r="3" opacity="0.85"/>
+    <circle cx="860" cy="640" r="1.4" opacity="0.4"/>
+    <circle cx="1120" cy="700" r="1.8" opacity="0.5"/>
+  </g>
+
+  <!-- масти, падающие как тень -->
+  <g fill="#dfa54f" opacity="0.1">
+    <path transform="translate(300,180) scale(3.2)" d="M12 3c-2 4-6 5.5-6 9a4.5 4.5 0 0 0 3.6 4.4L8 20h8l-1.6-3.6A4.5 4.5 0 0 0 18 12c0-3.5-4-5-6-9z"/>
+    <path transform="translate(1560,140) scale(3.6)" d="M12 20s-7-4.5-8.5-9A4.6 4.6 0 0 1 12 6.5 4.6 4.6 0 0 1 20.5 11C19 15.5 12 20 12 20z"/>
+    <path transform="translate(1700,560) scale(2.6)" d="M12 3l6 9-6 9-6-9z"/>
+  </g>
+
+  <rect width="1920" height="1080" fill="url(#veil)"/>
+</svg>
