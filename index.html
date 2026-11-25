@@ -172,31 +172,39 @@ section{position:relative;padding:110px 0}
 #crew .grid{margin-top:64px;display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
 .dossier{
   position:relative;border:1px solid var(--line);border-radius:6px;text-align:left;width:100%;
-  background:linear-gradient(165deg, color-mix(in oklch, var(--bg-2) 88%, transparent), color-mix(in oklch, var(--bg) 92%, transparent));
-  padding:22px 20px 20px;overflow:hidden;min-height:250px;
-  display:flex;flex-direction:column;
+  background:var(--bg-2);padding:20px;overflow:hidden;min-height:400px;
+  display:flex;flex-direction:column;isolation:isolate;
   transition:transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease);
+}
+.dossier-photo{
+  position:absolute;inset:0;z-index:-2;width:100%;height:100%;max-width:none;
+  object-fit:cover;object-position:center 22%;
+  filter:saturate(.72) sepia(.1) contrast(1.04) brightness(.82);
+  transition:transform .7s var(--ease),filter .5s var(--ease);
+}
+.dossier-shade{
+  position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(5,1,0,.16),transparent 65%),
+    linear-gradient(180deg,rgba(5,1,0,.62) 0%,rgba(5,1,0,.05) 25%,rgba(5,1,0,.14) 40%,rgba(5,1,0,.9) 64%,var(--bg) 100%);
 }
 .dossier::before{
   content:"";position:absolute;inset:0;opacity:0;transition:opacity .35s var(--ease);pointer-events:none;
-  background:radial-gradient(90% 70% at 50% 0%, color-mix(in oklch, var(--gold) 14%, transparent), transparent 70%);
+  background:radial-gradient(90% 60% at 50% 0%,color-mix(in oklch,var(--gold) 14%,transparent),transparent 72%);
 }
-.dossier:hover{transform:translateY(-6px);border-color:color-mix(in oklch, var(--gold) 55%, transparent);box-shadow:0 24px 50px -22px rgba(0,0,0,.7)}
+.dossier:hover{transform:translateY(-6px);border-color:color-mix(in oklch,var(--gold) 65%,transparent);box-shadow:0 24px 50px -22px rgba(0,0,0,.7)}
 .dossier:hover::before{opacity:1}
-.dossier .code{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
-.dossier .code svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:1.4}
-.dossier .avatar{
-  margin:18px 0 16px;width:74px;height:74px;border-radius:50%;
-  border:1px solid color-mix(in oklch, var(--gold) 45%, transparent);
-  display:grid;place-items:center;
-  font-family:var(--font-display);font-weight:600;font-size:26px;color:var(--gold);
-  background:color-mix(in oklch, var(--bg-3) 60%, transparent);overflow:hidden;flex-shrink:0;
+.dossier:hover .dossier-photo{transform:scale(1.035);filter:saturate(.88) sepia(.06) contrast(1.04) brightness(.9)}
+.dossier .code{position:relative;display:flex;justify-content:flex-end;align-items:center;text-shadow:0 1px 8px rgba(0,0,0,.7)}
+.dossier .monogram{
+  padding:0 0 7px 5px;border-bottom:1px solid var(--gold);
+  font-family:var(--font-display);font-size:29px;font-weight:500;line-height:1;letter-spacing:.08em;color:var(--ink-hi);
 }
-.dossier .avatar img{width:100%;height:100%;object-fit:cover}
+.dossier-content{position:relative;margin-top:auto}
 .dossier .nick{font-family:var(--font-display);font-weight:600;font-size:22px;text-transform:uppercase;letter-spacing:.02em;color:var(--ink-hi);line-height:1.05;white-space:nowrap}
 .dossier .nick.long{font-size:18px;letter-spacing:.01em}
-.dossier .desc{margin-top:8px;font-size:13.5px;color:var(--muted);line-height:1.5}
-.dossier .open-hint{margin-top:auto;padding-top:14px;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border-top:1px dashed color-mix(in oklch, var(--line) 75%, transparent)}
+.dossier .desc{margin-top:9px;font-size:13.5px;color:var(--ink);line-height:1.5}
+.dossier .open-hint{margin-top:16px;padding-top:14px;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border-top:1px dashed color-mix(in oklch,var(--line) 75%,transparent)}
 
 /* agent modal */
 dialog.agent-modal{
@@ -216,11 +224,11 @@ dialog.agent-modal::backdrop{background:rgba(5,1,0,.75);backdrop-filter:blur(6px
 .modal-close:hover{color:var(--gold);border-color:var(--gold)}
 .modal-id{display:flex;gap:22px;align-items:center;margin-top:26px}
 .modal-id .avatar{
-  width:96px;height:96px;border-radius:50%;border:1px solid color-mix(in oklch, var(--gold) 45%, transparent);
+  width:108px;height:132px;border-radius:5px;border:1px solid color-mix(in oklch,var(--gold) 45%,transparent);
   display:grid;place-items:center;font-family:var(--font-display);font-weight:600;font-size:34px;color:var(--gold);
-  background:color-mix(in oklch, var(--bg-3) 60%, transparent);overflow:hidden;flex-shrink:0;
+  background:color-mix(in oklch,var(--bg-3) 60%,transparent);overflow:hidden;flex-shrink:0;
 }
-.modal-id .avatar img{width:100%;height:100%;object-fit:cover}
+.modal-id .avatar img{width:100%;height:100%;object-fit:cover;object-position:center 22%;filter:saturate(.82) sepia(.06)}
 .modal-id h3{font-family:var(--font-display);font-weight:600;font-size:32px;text-transform:uppercase;color:var(--ink-hi);line-height:1.05}
 .modal-id .who{margin-top:6px;font-family:var(--font-mono);font-size:12.5px;letter-spacing:.08em;color:var(--muted)}
 .modal-fields{margin-top:28px;display:grid;gap:18px}
@@ -306,8 +314,29 @@ dialog.agent-modal::backdrop{background:rgba(5,1,0,.75);backdrop-filter:blur(6px
 .loot .lbl{margin-top:12px;font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
 .loot .note{margin-top:6px;font-size:13px;color:var(--muted)}
 
+/* ---------- completed operations ---------- */
+#completed{border-top:1px solid var(--line)}
+.done-grid{margin-top:56px;display:grid;gap:18px;grid-template-columns:repeat(2,minmax(0,1fr))}
+.done{
+  min-width:0;border:1px solid var(--line);border-radius:6px;padding:28px;display:flex;flex-direction:column;
+  background:linear-gradient(170deg,color-mix(in oklch,var(--bg-2) 85%,transparent),transparent);
+  transition:border-color .3s var(--ease),transform .3s var(--ease);
+}
+.done:hover{border-color:color-mix(in oklch,var(--gold) 50%,transparent);transform:translateY(-4px)}
+.done .no{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.done h3{font-family:var(--font-display);font-weight:600;font-size:26px;line-height:1.15;text-transform:uppercase;color:var(--ink-hi);margin-top:14px;overflow-wrap:anywhere}
+.done .desc{margin-top:12px;font-size:14.5px;line-height:1.6;color:var(--muted)}
+.done .verdict{margin-top:10px;font-size:13.5px;line-height:1.6;color:var(--ink)}
+.done .status{
+  margin-top:auto;padding-top:18px;
+}
+.done .status span{
+  display:inline-block;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--gold);border:1px solid color-mix(in oklch, var(--gold) 50%, transparent);border-radius:999px;padding:6px 14px;
+}
+
 /* ---------- backstage / quiz ---------- */
-.backstage-grid{margin-top:56px;display:grid;gap:24px;grid-template-columns:1.25fr 1fr;align-items:start}
+.backstage-grid{margin-top:56px;display:grid;gap:24px;grid-template-columns:1.25fr 1fr;align-items:stretch}
 @media(max-width:900px){.backstage-grid{grid-template-columns:1fr}}
 .quiz{border:1px solid var(--line);border-radius:8px;padding:30px;background:linear-gradient(170deg,color-mix(in oklch,var(--bg-2) 85%,transparent),transparent)}
 .quiz .q-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -327,11 +356,7 @@ dialog.agent-modal::backdrop{background:rgba(5,1,0,.75);backdrop-filter:blur(6px
 .quiz .q-verdict{font-size:14px;color:var(--muted)}
 .quiz .q-next{padding:11px 22px;font-size:12px}
 .quiz .q-restart{margin-top:8px}
-.video-card{border:1px dashed var(--line);border-radius:8px;padding:30px}
-.video-card .vc-tag{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
-.video-card h3{font-family:var(--font-display);font-weight:600;font-size:26px;text-transform:uppercase;color:var(--ink-hi);margin-top:12px;line-height:1.15}
-.video-card p{margin-top:12px;font-size:14.5px;color:var(--muted)}
-.bs-quotes{margin-top:24px;display:grid;gap:14px}
+.bs-quotes{display:grid;gap:14px;align-content:space-evenly;border:1px solid var(--line);border-radius:8px;padding:26px 28px}
 .bs-quote{border-left:1px solid var(--gold);padding:4px 0 4px 18px;font-size:14.5px;color:var(--muted)}
 .bs-quote b{color:var(--ink);font-weight:500}
 
@@ -352,11 +377,20 @@ footer .m{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;tex
 footer .m a{color:var(--muted);transition:color .25s}
 footer .m a:hover{color:var(--gold)}
 
+@media(max-width:700px){
+  .done-grid{grid-template-columns:1fr}
+  .done h3{font-size:clamp(22px,6vw,26px)}
+}
 @media(max-width:640px){
   body{font-size:16px}
   section{padding:84px 0}
   .hero-in{padding-top:96px}
   .modal-in{padding:24px}
+  .modal-id{gap:14px;align-items:center}
+  .modal-id .avatar{width:80px;height:104px}
+  .modal-id>div:last-child{min-width:0}
+  .modal-id h3{font-size:clamp(22px,6.8vw,28px);overflow-wrap:break-word}
+  .modal-id .who{font-size:11px;line-height:1.6}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
@@ -377,7 +411,8 @@ footer .m a:hover{color:var(--gold)}
     </a>
     <nav class="main" aria-label="Разделы">
       <a href="#crew">Досье</a>
-      <a href="#archive">Архив</a>
+      <a href="#archive">Дела</a>
+      <a href="#completed">Итоги</a>
       <a href="#loot">Факты</a>
       <a href="#backstage">За кадром</a>
     </nav>
@@ -391,12 +426,12 @@ footer .m a:hover{color:var(--gold)}
   </div>
   <div class="hero-veil" aria-hidden="true"></div>
   <div class="wrap hero-in">
-    <span class="case-tag"><span class="dot"></span>ДЕЛО № 2026 · ПРОЕКТНАЯ КОМАНДА НОВЫХ ДЗО</span>
+    <span class="case-tag"><span class="dot"></span>ДЕЛО № 2026 · БЮРО ОСОБЫХ ПРОЕКТОВ</span>
     <h1 class="display" id="headline">
       <span class="w">Сначала</span> <span class="w">был</span> <span class="w">вызов.</span><br>
       <span class="w gold">Потом</span> <span class="w gold">появились</span> <span class="w gold">мы.</span>
     </h1>
-    <p class="hero-sub"><b>Десять агентов. Одна миссия.</b> Десятки сложных процессов и ни одного повода сдаваться.</p>
+    <p class="hero-sub"><b>Десять агентов. Одна миссия.</b><br>Десятки сложных процессов и ни одного повода сдаваться.</p>
     <div class="hero-cta">
       <a class="btn btn-gold" href="#archive">Открыть архив дел</a>
       <a class="btn btn-ghost" href="#crew">Кто в команде</a>
@@ -414,7 +449,7 @@ footer .m a:hover{color:var(--gold)}
 <section id="mission">
   <div class="wrap">
     <p class="sec-label rise">Файл 01 · Наша миссия</p>
-    <p class="statement rise">Мы превращаем <em>сложное</em> в понятное, <em>разрозненное</em> — в системное,<br>а <em>изменения</em> — в работающие процессы.</p>
+    <p class="statement rise">Мы превращаем <em>сложное</em> в понятное, <em>разрозненное</em> — в системное,<br>а <em>изменения</em> — в результат.</p>
   </div>
 </section>
 
@@ -423,7 +458,7 @@ footer .m a:hover{color:var(--gold)}
   <div class="wrap">
     <p class="sec-label rise">Файл 02 · Архив ДУУ</p>
     <h2 class="sec-title rise">Личные дела агентов</h2>
-    <p class="sec-lead rise">Десять человек, разные характеры и опыт. Одна цель — превратить сложные изменения в работающие решения. Откройте личное дело любого агента.</p>
+    <p class="sec-lead rise">Десять человек. Разные характеры. Одна цель.</p>
     <div class="grid" id="crewGrid"><!-- карточки генерируются скриптом --></div>
   </div>
 </section>
@@ -433,7 +468,7 @@ footer .m a:hover{color:var(--gold)}
   <div class="wrap">
     <p class="sec-label rise">Файл 03 · Сценарий операции</p>
     <h2 class="sec-title rise">Как мы работаем</h2>
-    <p class="sec-lead rise">Пять ходов между идеей и режимом. Каждый отработан до автоматизма — поэтому выглядит как удача.</p>
+    <p class="sec-lead rise">Четыре этапа между идеей и режимом.<br>Каждый отработан до автоматизма — поэтому выглядит как удача.</p>
     <div class="plan-wrap">
       <div class="plan-rail" aria-hidden="true"><div class="fill" id="railFill"></div></div>
       <div id="steps"><!-- шаги генерируются скриптом --></div>
@@ -445,17 +480,27 @@ footer .m a:hover{color:var(--gold)}
 <section id="archive">
   <div class="wrap">
     <p class="sec-label rise">Файл 04 · Материалы следствия</p>
-    <h2 class="sec-title rise">Архив расследований</h2>
+    <h2 class="sec-title rise">Проектные расследования</h2>
     <p class="sec-lead rise">Десять агентов. Сложные процессы. Реальные изменения. Каждое дело — рассекречено: откройте материалы.</p>
     <div class="archive-list" id="archiveList"><!-- дела генерируются скриптом --></div>
+  </div>
+</section>
+
+<!-- COMPLETED -->
+<section id="completed">
+  <div class="wrap">
+    <p class="sec-label rise">Файл 05 · Результат достигнут</p>
+    <h2 class="sec-title rise">Архив операций</h2>
+    <p class="sec-lead rise">От сложных задач — к конкретным результатам. Команда не только ведёт проекты, но и доводит их до конца.</p>
+    <div class="done-grid" id="doneGrid"><!-- завершённые операции генерируются скриптом --></div>
   </div>
 </section>
 
 <!-- LOOT -->
 <section id="loot">
   <div class="wrap">
-    <p class="sec-label rise">Файл 05 · Факты</p>
-    <h2 class="sec-title rise">Доказательства результата</h2>
+    <p class="sec-label rise">Файл 06 · Факты</p>
+    <h2 class="sec-title rise">Доказательства</h2>
     <p class="sec-lead rise">Не слова, а вещественные доказательства. Приобщены к делу.</p>
     <div class="loot-grid" id="lootGrid"><!-- метрики генерируются скриптом --></div>
   </div>
@@ -464,19 +509,12 @@ footer .m a:hover{color:var(--gold)}
 <!-- BACKSTAGE -->
 <section id="backstage">
   <div class="wrap">
-    <p class="sec-label rise">Файл 06 · За кадром</p>
+    <p class="sec-label rise">Файл 07 · За кадром</p>
     <h2 class="sec-title rise">Что осталось за кадром</h2>
     <p class="sec-lead rise">Живые моменты, забавные фразы и командные традиции. Проверьте, насколько хорошо вы нас знаете.</p>
     <div class="backstage-grid">
       <div class="quiz rise" id="quiz"><!-- викторина генерируется скриптом --></div>
-      <div>
-        <div class="video-card rise">
-          <p class="vc-tag">Видеоматериалы · готовятся</p>
-          <h3>Один день из жизни проектной команды</h3>
-          <p>Снимаем и монтируем. После рассекречивания появится здесь.</p>
-        </div>
-        <div class="bs-quotes rise" id="bsQuotes"><!-- мини-цитаты генерируются скриптом --></div>
-      </div>
+      <div class="bs-quotes rise" id="bsQuotes"><!-- мини-цитаты генерируются скриптом --></div>
     </div>
   </div>
 </section>
@@ -498,7 +536,7 @@ footer .m a:hover{color:var(--gold)}
 
 <footer>
   <div class="wrap foot-in">
-    <span class="m">© 2026 · Проектная команда новых ДЗО</span>
+    <span class="m">© 2026 · Бюро особых проектов</span>
     <span class="m"><a href="#top">Дело №2026 · рассекречено для защиты</a></span>
   </div>
 </footer>
